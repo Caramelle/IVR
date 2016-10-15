@@ -1,4 +1,4 @@
-I = imread('03.jpg');
+I = imread('02.jpg');
 original = I;
 %contrast enhancement
 se = strel('disk',4);
@@ -33,7 +33,7 @@ names={}
 for i=1:17
     img = imcrop(original, regions(i).BoundingBox);
     Name = strcat('Obj #', num2str(i));
-    names{i}=Name;
+    names{
     figure,imshow(img); title(Name);
     imwrite(img,[Name '.jpg']);
 end ,
