@@ -1,4 +1,4 @@
-I = imread('17.jpg');
+I = imread('10.jpg');
 original = I;
 %contrast enhancement
 se = strel('disk',4);
@@ -20,23 +20,18 @@ img_dilated = imdilate(img_dilated, [se_line1 se_line2]);
 closed = imclose(img_dilated, se);
 
 img_filled = imfill(closed, 'hole');
-dilate_again = imdilate(img_filled, se_disk);
-dilate_again = imdilate(img_filled, [se_line1 se_line2]);
-closed_again = imclose(dilate_again, se);
 
-filled_again = imfill(closed_again, 'hole');
-
-L= bwlabel(filled_again);
+L= bwlabel(img_filled);
 regions = regionprops(L, I(:,:,1), 'BoundingBox');
 
 for i=1:17
     img = imcrop(original, regions(i).BoundingBox);
-    Name = strcat('Obj #', num2str(i));
-    figure,imshow(img); title(Name);
-end ,
+    Name = strcat('Objec ', num2str(i));
+    imwrite(img, [Name '.jpg']);
+end 
 %closed = imclose(img_dilated, se);
 %skeleton = bwmorph(closed, 'branchpoints', 3);
-%skeleton = bwmorph(closed, 'dilate', 3);
+skeleton = bwmorph(filled_again, 'dilate', 3);
 
 %filled = imfill(skeleton, 'hole');
 
