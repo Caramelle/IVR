@@ -17,29 +17,24 @@ median=getMedianBackground(list,4);
 
 im1=double(imread('p03.jpg'));
 I= imgaussfilt(im1,0.1);
-se = strel('disk',3);
+se = strel('disk',4);
 im1 = (I + imtophat(I,se)) - imbothat(I,se);
 %imshow(imf);
 
 %change=open(2,coloror(thr(35,abs(im1-median))));
-absv=abs(im1-median);
-r=absv(:,:,1);
-g=absv(:,:,2);
-b=absv(:,:,3);
-diff_R=thr(r,18);
-diff_G=thr(g,18);   
-diff_B=thr(b,25);
-fin=diff_R|diff_B|diff_G;
-BW=(bwmorph(fin,'majority',7));
+imhsv = rgb2hsv(im1);
+imnorm = imhsv(:,:,2);
+BW=(bwmorph(imnorm,'majority',7));
 %BW=(~BW);
 %[x,y] = size(BW);
 xxx=im2.*repmat(BW,1,1,3);
 xxx=xxx.*repmat(diff_B,1,1,3);
 xxx=xxx.*repmat(diff_G,1,1,3);
 %xx2=BW.*im1(:,:,2);dif_R
-%se_erode = strel('disk', 1)
-%fin = imerode(fin, se_erode);
-
+%figure;
+%imshow(fin)
+se_close = strel('disk', 1);
+fin = imclose(fin, se_close);
 
 [labels,nan]=bwlabel(fin);
 rp=regionprops(labels);
@@ -56,8 +51,10 @@ for i=1:size(bigs,2)
     img = imcrop(fin, rp(bigs(i)).BoundingBox);
     Name = strcat('s', num2str(i));
     names{i}=Name;
-    figure,imshow(img); title(Name);
+    %figure,imshow(img); title(Name);
     %imwrite(img,[Name '.jpg']);
 end ,
-
+%figure;
+%imshow(fin);
+    
 
