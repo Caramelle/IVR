@@ -1,0 +1,5 @@
+I=getNormalizedImage('02.jpg');
+Ig = I(:, :, 2);
+Ir = I(:, :, 1);
+Ib = I(:, :, 3);
+ Ie = edge(Ir, 'log');

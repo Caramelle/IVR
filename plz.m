@@ -16,6 +16,8 @@ thresholded = I4 > bg_mean - 5;
 I2 = thresholded .*I4;
 I3 = edge(I4, 'canny', graythresh(I2));
 
+%imshow(I3);
+
 se_disk = strel('disk', 4);
 se_line1 = strel('line',3,100);
 se_line2 = strel('line',3,100);
