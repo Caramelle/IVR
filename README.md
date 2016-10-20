@@ -1,2 +1,0 @@
-# IVR
-object detection stuff
