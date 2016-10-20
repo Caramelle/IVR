@@ -40,6 +40,6 @@ Gval = mean(frequentRGB(:,2));
 Bval = mean(frequentRGB(:,3));
 
 %     vec = [compactness,i1,i2,i3,i4,i5,i6,i7];
-     vec = [compactness,ci1,ci2,ci3, ci4, ci5, ci6, Rval, Gval, Bval];         
+     vec = [compactness,ci1,ci2, Rval, Gval, Bval];         
 
      

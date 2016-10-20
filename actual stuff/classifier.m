@@ -1,4 +1,4 @@
-vec=zeros(59,10);
+vec=zeros(59,6);
 for i=1:59
     im=imread([num2str(i) '.jpg']);
     imbw = imread(['bw' num2str(i) '.jpg']);
