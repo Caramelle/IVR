@@ -17,7 +17,7 @@ end
 
 median=getMedianBackground(list,4);
 %order: 5, 3, 2, 4
-I= imread('06.jpg');
+I= imread('07.jpg');
 original_image = double(I);
 blurred_image = imgaussfilt(original_image,0.1);
 se = strel('disk',3);
@@ -53,9 +53,9 @@ bigs=find([rp.Area]>=50);
 names={};
 
 for i=1:size(bigs,2)
-    img = imcrop(fin, rp(bigs(i)).BoundingBox);
-    num = i+59;
-    Name = strcat('bw', num2str(num));
+    img = imcrop(I, rp(bigs(i)).BoundingBox);
+    num = i+73;
+    Name =  num2str(num);
     names{i}=Name;
     %figure,imshow(img); title(Name);
     imwrite(img,[Name '.jpg']);

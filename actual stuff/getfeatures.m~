@@ -51,26 +51,15 @@ centroidsvec = struct2cell(centroids);
 centroidsmat = cell2mat(centroidsvec);
 centroidsmean = mean(centroidsmat(:,1));
 
-% %majoraxis
-% majax = regionprops(ImageBW, 'MajorAxisLength');
-% majaxvec = struct2cell(majax);
-% majaxmat = cell2mat(majaxvec);
-% majaxmean = mean(majaxmat(:,1));
-% 
-% %minoraxis
-% minax = regionprops(ImageBW, 'MinorAxisLength');
-% minaxvec = struct2cell(minax);
-% minaxmat = cell2mat(minaxvec);
-% minaxmean = mean(minaxmat(:,1));
+%majoraxis
+majax = regionprops(ImageBW, 'MajorAxisLength');
+majaxvec = struct2cell(majax);
+majaxmat = cell2mat(majaxvec);
+maja
 
-%euler
-euler = regionprops(ImageBW, 'EulerNumber');
-eulervec = struct2cell(euler);
-eulermat = cell2mat(eulervec);
-eulermean = mean(eulermat(:,1));
 
 
 %     vec = [compactness,i1,i2,i3,i4,i5,i6,i7];
-     vec = [compactness,ci1, ci2, Rval, Gval, Bval, whitesno, centroidsmean, eulermean];         
+     vec = [compactness,ci1, ci2, Rval, Gval, Bval, whitesno, centroidsmean];         
 
      
