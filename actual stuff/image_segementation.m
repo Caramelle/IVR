@@ -16,7 +16,9 @@ for i=1:n
 end
 
 median=getMedianBackground(list,4);
-%order: 5, 3, 2, 4, 
+
+%order: 5, 3, 2, 4
+
 I= imread('010.jpg');
 original_image = double(I);
 blurred_image = imgaussfilt(original_image,0.1);
@@ -45,7 +47,7 @@ fin=diff_R|diff_B|diff_G;
 
 [labels,nan]=bwlabel(fin);
 rp=regionprops(labels);
-smalls=find([rp.Area]<50);
+smalls=find([rp.Area]<300);
 [x,y] = size(rp);
 
 for i=1:size(smalls,2)
@@ -53,7 +55,7 @@ for i=1:size(smalls,2)
     fin(coord(2):coord(2)+coord(4),coord(1):coord(1)+coord(3))=0;
 end
 
-bigs=find([rp.Area]>=50);
+bigs=find([rp.Area]>=300);
 names={};
 
 for i=1:size(bigs,2)

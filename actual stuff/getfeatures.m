@@ -31,14 +31,6 @@ ci6 = 1000000*imag(tmp);
 
 %ci=[ci1,ci2,ci3,ci4,ci5,ci6]
 
-%most freq colour
-[idx map] = rgb2ind(Image, 1e-6, 'nodither');
-m = mode(idx);
-frequentRGB = map(m, :);
-Rval = mean(frequentRGB(:,1));
-Gval = mean(frequentRGB(:,2));
-Bval = mean(frequentRGB(:,3));
-
 % # of white pixels
 whites = regionprops(ImageBW, 'FilledArea');
 whitesvec = struct2cell(whites);
@@ -63,14 +55,11 @@ centroidsmean = mean(centroidsmat(:,1));
 % minaxmat = cell2mat(minaxvec);
 % minaxmean = mean(minaxmat(:,1));
 
-%euler
-euler = regionprops(ImageBW, 'EulerNumber');
-eulervec = struct2cell(euler);
-eulermat = cell2mat(eulervec);
-eulermean = mean(eulermat(:,1));
 
-   vec = [compactness,ci1, ci2, Rval, Gval, Bval, whitesno, centroidsmean, eulermean];         
+  % vec = [compactness,ci1, ci2, Rval, Gval, Bval, whitesno, centroidsmean, eulermean];         
 
 
+
+     vec = [compactness,ci1, ci2, whitesno, centroidsmean];         
 
      
