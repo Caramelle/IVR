@@ -11,5 +11,5 @@ end
 % imbw = imread('bw84.jpg');
 % props = getfeatures(im,imbw);
 % cpre = predict(Md1, props)
-
+ 
 %4

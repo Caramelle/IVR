@@ -16,8 +16,8 @@ for i=1:n
 end
 
 median=getMedianBackground(list,4);
-%order: 5, 3, 2, 4
-I= imread('07.jpg');
+%order: 5, 3, 2, 4, 
+I= imread('010.jpg');
 original_image = double(I);
 blurred_image = imgaussfilt(original_image,0.1);
 se = strel('disk',3);
@@ -27,12 +27,16 @@ absv=abs(contrasted_image-median);
 r=absv(:,:,1);
 g=absv(:,:,2);
 b=absv(:,:,3);
-diff_R=thr(r,18);
-diff_G=thr(g,18);   
+diff_R=thr(r,19);
+diff_G=thr(g,19);   
 diff_B=thr(b,25);
 fin=diff_R|diff_B|diff_G;
+% fin = bwmorph(fin, 'open');
+% fin = bwmorph(fin, 'majority');
+% fin = bwmorph(fin, 'diag');
+% fin = bwmorph(fin, 'close');
 
-BW=(bwmorph(fin,'bridge',7));
+%BW=(bwmorph(fin,'bridge',7));
 %xxx=im1.*repmat(BW,1,1,3);
 %xxx=xxx.*repmat(diff_B,1,1,3);
 %xxx=xxx.*repmat(diff_G,1,1,3);
@@ -54,9 +58,10 @@ names={};
 
 for i=1:size(bigs,2)
     img = imcrop(I, rp(bigs(i)).BoundingBox);
-    num = i+73;
-    Name =  num2str(num);
+    num = i+59;
+   % Name =  strcat(['bw' num2str(num)]);
+    Name = num2str(num);
     names{i}=Name;
-    %figure,imshow(img); title(Name);
-    imwrite(img,[Name '.jpg']);
+    figure,imshow(img); title(Name);
+    %imwrite(img,[Name '.jpg']);
 end 

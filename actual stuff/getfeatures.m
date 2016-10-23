@@ -69,8 +69,8 @@ eulervec = struct2cell(euler);
 eulermat = cell2mat(eulervec);
 eulermean = mean(eulermat(:,1));
 
+   vec = [compactness,ci1, ci2, Rval, Gval, Bval, whitesno, centroidsmean, eulermean];         
 
-%     vec = [compactness,i1,i2,i3,i4,i5,i6,i7];
-     vec = [compactness,ci1, ci2, Rval, Gval, Bval, whitesno, centroidsmean, eulermean];         
+
 
      
