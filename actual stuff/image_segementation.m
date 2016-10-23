@@ -17,7 +17,7 @@ end
 
 median=getMedianBackground(list,4);
 %order: 5, 3, 2, 4
-I= imread('07.jpg');
+I= imread('010.jpg');
 original_image = double(I);
 blurred_image = imgaussfilt(original_image,0.1);
 se = strel('disk',3);
@@ -27,8 +27,8 @@ absv=abs(contrasted_image-median);
 r=absv(:,:,1);
 g=absv(:,:,2);
 b=absv(:,:,3);
-diff_R=thr(r,18);
-diff_G=thr(g,18);   
+diff_R=thr(r,19);
+diff_G=thr(g,19);   
 diff_B=thr(b,25);
 fin=diff_R|diff_B|diff_G;
 
@@ -41,7 +41,7 @@ BW=(bwmorph(fin,'bridge',7));
 
 [labels,nan]=bwlabel(fin);
 rp=regionprops(labels);
-smalls=find([rp.Area]<50);
+smalls=find([rp.Area]<300);
 [x,y] = size(rp);
 
 for i=1:size(smalls,2)
@@ -49,7 +49,7 @@ for i=1:size(smalls,2)
     fin(coord(2):coord(2)+coord(4),coord(1):coord(1)+coord(3))=0;
 end
 
-bigs=find([rp.Area]>=50);
+bigs=find([rp.Area]>=300);
 names={};
 
 for i=1:size(bigs,2)
@@ -57,6 +57,6 @@ for i=1:size(bigs,2)
     num = i+73;
     Name =  num2str(num);
     names{i}=Name;
-    %figure,imshow(img); title(Name);
-    imwrite(img,[Name '.jpg']);
+    figure,imshow(img); title(Name);
+    %imwrite(img,[Name '.jpg']);
 end 
