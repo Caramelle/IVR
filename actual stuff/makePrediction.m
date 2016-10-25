@@ -1,19 +1,27 @@
-function [ vec ] = getInputVectors (nrfeatures,totalim )
+function [] = makePrediction (impath, showBack, showSubstr, showCropped )
 
-all={'02.jpg';'03.jpg';'04.jpg';'05.jpg';'06.jpg';'07.jpg';'08.jpg';'09.jpg';'010.jpg'
-    ;'017.jpg';'018.jpg';'019.jpg';'020.jpg';'021.jpg'};
+
+medB=getMedianB();
 
 theclasses=load('savedtags.mat');
-medB=load('savedBackground.mat');
-medB=medB.med;
 theclasses=theclasses.tags;
+themodel=load('fittedbayes2.mat');
+themodel=themodel.model2;
 n=size(theclasses,2);
-vec=zeros(n,nrfeatures);
 nrobjs=0;
-for nrim=1:totalim
-   I= imread(['input/' all{nrim}]);
+
+   I= imread(impath);
+   if showBack
+       figure;
+       imshow(uint8(medB))
+   end
    fin=getFin(I,medB);
-  
+   
+   if showSubstr
+       figure;
+       imshow(fin)
+   end
+
    [labels,nan]=bwlabel(fin);
    rp=regionprops(labels);
    smalls=find([rp.Area]<300);
@@ -25,22 +33,28 @@ for nrim=1:totalim
 
     bigs=find([rp.Area]>=300);
 
+  figure; 
 
   for i=1:size(bigs,2)
      nrobjs=nrobjs+1;
      img = imcrop(I, rp(bigs(i)).BoundingBox);
+     
      bwimg = imcrop(fin, rp(bigs(i)).BoundingBox);
      bwimg=bwmorph(bwimg,'close',1);
      num=num2str(nrobjs);
      props=getfeatures(img,bwimg);
-     vec(nrobjs,:)=props;
+     prediction=predict(themodel,props);
+   
+     disp(props);
+     subplot(5,5,nrobjs); 
+      imshow(img);
+     title([num,prediction]);
+    
+    
+     
   end 
   
-end
+  
 
-
-
-save('savedinput2.mat','vec');
 
 end
-

@@ -4,21 +4,22 @@
 
 theclasses=load('savedtags.mat');
 theclasses=theclasses.tags;
-input=load('savedinput2.mat');
+input=load('savedinput.mat');
 input=input.vec;
 
-
+n=size(theclasses,2);
+[training,testing]=dividerand(n,0.8,0.2);
 
 trainIn=input(1:111,:);
 trainOut=theclasses(1:111);
 
-model2=fitcnb(trainIn,trainOut);
+model=fitcnb(trainIn,trainOut, 'Prior', 'uniform');
 
-testIn=input(112:125,:);
-testOut=theclasses(112:125);
+testIn=input(111:125,:);
+testOut=theclasses(111:125);
 testOut=testOut(:);
 
-predictions=predict(model2,testIn);
+predictions=predict(model,testIn);
 disp(predictions)
 disp(testOut);
 gotRight=sum(cellfun(@strcmp,predictions,testOut));
@@ -31,4 +32,4 @@ disp(accuracy);
 % cvmodel = crossval(model,'kfold',5);
 % cvError = kfoldLoss(cvmodel);
 % disp(1-cvError);
-save('fittedbayes2.mat','model2');
+save('fittedbayes.mat','model');

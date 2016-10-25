@@ -38,7 +38,9 @@ for nrim=1:totalim
   
 end
 
-
+for i=111:125
+    subplot(5,5,i-110);
+    imshow
 
 save('savedinput2.mat','vec');
 

@@ -14,7 +14,7 @@ diff_R=thr(r,19);
 diff_G=thr(g,19);   
 diff_B=thr(b,25);
 fin=diff_R|diff_B|diff_G;
-
+fin=bwareaopen(fin,60);
 
 end
 
