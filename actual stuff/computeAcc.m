@@ -25,10 +25,8 @@ gotRight=sum(cellfun(@strcmp,predictions,testOut));
 accuracy=double(gotRight)/size(testIn,1);
 disp(accuracy);
 
-% model = fitcnb(input(1:111,:),theclasses(1:111), 'Prior','uniform');
-% %model = mvnpdf(input, theclasses);
-% % Calculate misclassification error
-% cvmodel = crossval(model,'kfold',5);
-% cvError = kfoldLoss(cvmodel);
-% disp(1-cvError);
+
+cvmodel = crossval(model2,'kfold',5);
+cvError = kfoldLoss(cvmodel);
+disp(1-cvError);
 save('fittedbayes2.mat','model2');

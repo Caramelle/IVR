@@ -55,8 +55,7 @@ soliditymat = cell2mat(solidityvec);
 soliditymean = mean(soliditymat);
 
 %colour
-colourimage = Image(:);
-colourmean = mean(colourimage);
+
 
 
 % %majoraxis
@@ -78,8 +77,13 @@ convmean = mean(convmat);
   % vec = [compactness,ci1, ci2, Rval, Gval, Bval, whitesno, centroidsmean, eulermean];         
 brow=onePoundHue(Image,ImageBW,0.36,0.48);
 
+b=Image(:,:,3);
+b(ImageBW==0)=1e-10;
+colourmean = median(b(:));
+
+
 %removed c1 and c2
-     vec = [compactness, ci1, ci2, convmean,brow,centroidsmean,soliditymean]; 
+       vec = [compactness, ci1, ci2, convmean,brow,centroidsmean,soliditymean];  
 
 
 
