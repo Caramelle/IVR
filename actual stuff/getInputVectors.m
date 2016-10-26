@@ -40,7 +40,7 @@ end
 
 
 
-save('savedinput2.mat','vec');
+save('savedinput4.mat','vec');
 
 end
 
