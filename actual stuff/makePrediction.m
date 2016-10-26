@@ -1,4 +1,4 @@
-function [] = makePrediction (impath, showBack, showSubstr, showCropped )
+function [piggie] = makePrediction (impath, showBack, showSubstr, showCropped )
 
 
 medB=getMedianB();
@@ -44,7 +44,7 @@ nrobjs=0;
      num=num2str(nrobjs);
      props=getfeatures(img,bwimg);
      prediction=predict(themodel,props);
-   
+     piggie{i} = prediction;
      disp(props);
      subplot(5,5,nrobjs); 
       imshow(img);

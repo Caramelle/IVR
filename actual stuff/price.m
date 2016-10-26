@@ -1,8 +1,9 @@
-test_image = '010.jpg';
-makePrediction(test_image, 1,1,1);
+test_image = '02.jpg';
+predictions = makePrediction(test_image, 1,1,1);
+predictions = predictions(:);
 getPriceMap;
 sum = 0;
-for i=1:size(predictions(:))
+for i=1:size(predictions)
     value = priceMap(predictions{i});
     sum = sum + value;
 end
