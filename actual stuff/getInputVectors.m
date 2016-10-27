@@ -30,7 +30,7 @@ for nrim=1:totalim
      nrobjs=nrobjs+1;
      img = imcrop(I, rp(bigs(i)).BoundingBox);
      bwimg = imcrop(fin, rp(bigs(i)).BoundingBox);
-     bwimg=bwmorph(bwimg,'close',1);
+     %bwimg=bwmorph(bwimg,'close',1);
      num=num2str(nrobjs);
      props=getfeatures(img,bwimg);
      vec(nrobjs,:)=props;
@@ -40,7 +40,7 @@ end
 
 
 
-save('savedinput4.mat','vec');
+save('savedinput.mat','vec');
 
 end
 

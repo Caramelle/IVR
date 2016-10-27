@@ -1,11 +1,12 @@
-test_image = '02.jpg';
-predictions = makePrediction(test_image, 1,1,1);
+test_image = 'input/02.jpg';
+predictions = makePrediction(test_image);
 predictions = predictions(:);
-getPriceMap;
-sum = 0;
+priceMap=getPriceMap();
+thesum = 0;
 for i=1:size(predictions)
-    value = priceMap(predictions{i});
-    sum = sum + value;
+    p=predictions{i};
+    value = priceMap(p{1});
+    thesum = thesum + value;
 end
-
-value = sum/100
+thesum = thesum/100;
+disp(thesum);
