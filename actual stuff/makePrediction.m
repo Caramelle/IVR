@@ -18,6 +18,11 @@ I= imread(impath);
 
 % bw final result after segmenting
 medB=getMedianBackground();
+figure;
+imshow(uint8(medB));
+title('Median Background');
+input('Next stage?');
+close all;
 fin=getForeground(I,medB);
    
 [labels,nan]=bwlabel(fin);
@@ -32,6 +37,13 @@ end
 
 
 bigs=find([rp.Area]>=300);
+
+figure;
+imshow(fin);
+title('Segmentation stage');
+input('Next stage?');
+close all;
+
 
 f1=figure(1);
 set(f1, 'Position', [100, 100, 1049, 895]);

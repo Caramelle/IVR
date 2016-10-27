@@ -14,6 +14,10 @@ poss={'poundcoin';'twopounds';'bigholewasher';'smallholewasher';
 
 medB=load('savedBackground.mat');
 medB=medB.med;
+figure;
+imshow(uint8(medB));
+title('Median Background');
+input('Next stage?');
 n=input('How many images to classify?\n');
 nrobjs=0;
 tags={};
@@ -35,7 +39,11 @@ for nrim=1:n
 
    % select objects by area
     bigs=find([rp.Area]>=300);
-
+    figure;
+    imshow(fin);
+    title('Segmentation stage');
+    input('Next stage?');
+    close all;
 
   for i=1:size(bigs,2)
      nrobjs=nrobjs+1;

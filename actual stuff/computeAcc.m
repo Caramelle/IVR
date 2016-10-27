@@ -24,7 +24,7 @@ disp(accuracy);
 % cross-validation
 
 modelcv=fitcnb(input,theclasses,'Prior','uniform');
-cvmodel = crossval(model5,'kfold',5);
+cvmodel = crossval(modelcv,'kfold',5);
 cvError = kfoldLoss(cvmodel);
 yp=cvmodel.kfoldPredict();
 order = {'twopounds', 'poundcoin', '50p', '20p', '5p', ...
